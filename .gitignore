@@ -205,3 +205,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# 排除自動生成的記憶資料
+kernel/memory/pain_index_data.json
