@@ -1,4 +1,1 @@
-# 排除自動生成的記憶資料
-kernel/memory/pain_index_data.json
-__pycache__/
-*.pyc
+
