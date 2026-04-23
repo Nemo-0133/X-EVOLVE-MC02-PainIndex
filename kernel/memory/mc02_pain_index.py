@@ -2,13 +2,13 @@ import json
 import os
 
 class MC02PainIndex:
-    def __init__(self, storage_file="kernel/memory/pain_index_data.json"):
+    def __init__(self, storage_file="kernel/mc_core/pain_index_data.json"):
         """
         MC-02 痛覺索引系統
         storage_file: 記憶實體化存入硬碟的 JSON 檔案路徑。
         """
         self.storage_file = storage_file
-        self.minor_roadblocks = {}      # 次要錯誤 (路障): { "路徑": 阻力值 }
+        self.minor_roadblocks = {}   # 次要錯誤 (路障): { "路徑": 阻力值 }
         self.critical_firewalls = set() # 嚴重錯誤 (禁區): { "路徑" }
         self._load_memory()
 
@@ -18,10 +18,10 @@ class MC02PainIndex:
             try:
                 with open(self.storage_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    self.minor_roadblocks = data.get("minor", {})
-                    self.critical_firewalls = set(data.get("critical", []))
+                self.minor_roadblocks = data.get("minor", {})
+                self.critical_firewalls = set(data.get("critical", []))
             except (json.JSONDecodeError, IOError):
-                print("[MC-02] 記憶檔讀取異常，系統將建立全新索引。")
+                print("[MC-02] 記憶讀取異常，系統將建立全新索引。")
 
     def _save_memory(self):
         """將當前記憶同步至實體檔案"""
